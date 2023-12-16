@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Pagination logic for contacts table:
+ * - Connect to database
+ * - Get current page number
+ * - Calculate total rows in table 
+ * - Calculate number of pages
+ * - Offset to fetch rows for current page
+ * - Fetch contacts for current page
+ * - Close database connection
+ */
+
 // Connect to database
 global $conn;
 include 'conn.php';
@@ -12,10 +23,9 @@ $sql = "SELECT COUNT(*) FROM contacts";
 $result = $conn->query($sql);
 $total_rows = $result->fetch_row()[0];
 
-if ($page > 2){
+if ($page > 2) {
     $minus = $page - 2;
-}
-else{
+} else {
     $minus = 1;
 }
 
@@ -61,7 +71,8 @@ $conn->close();
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-            <div id="response"></div>    
+
+                <div id="response"></div>    
             <div
                     class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                     <div class="w-full md:w-1/2">
